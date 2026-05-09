@@ -1,0 +1,90 @@
+.historia {
+  background-color: white;
+  padding: 6rem 0;
+}
+
+.historia-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.historia-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.historia-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 1.5rem 0;
+  line-height: 1.2;
+}
+
+.historia-text {
+  font-size: 1.125rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.historia-features {
+  display: flex;
+  gap: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #334155;
+}
+
+.feature-icon {
+  color: var(--primary);
+}
+
+.historia-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1.125rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .historia-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

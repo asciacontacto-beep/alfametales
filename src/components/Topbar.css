@@ -1,0 +1,126 @@
+.topbar {
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.topbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+}
+
+.logo-symbol {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-family: serif;
+}
+
+.logo-text {
+  padding-top: 0.25rem;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.auth-btn {
+  color: var(--text-dark);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-btn:hover {
+  color: var(--primary);
+}
+
+.cart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.cart-container:hover {
+  color: var(--primary);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 6px;
+  right: 2px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.auth-active-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid white;
+}

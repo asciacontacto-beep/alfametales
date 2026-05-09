@@ -1,0 +1,205 @@
+/* ── IMPRESIÓN / PDF ──────────────────────────────── */
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+  .no-print { display: none !important; }
+}
+
+/* Contenedor del documento */
+.doc-sheet {
+  font-family: 'Outfit', Arial, sans-serif;
+  padding: 2.5rem 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  color: #1e293b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Encabezado */
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #0ca354;
+  margin-bottom: 1.5rem;
+}
+
+.doc-brand-name {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0ca354;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.doc-brand-sub {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.doc-type-box {
+  text-align: right;
+}
+
+.doc-type-label {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.02em;
+}
+
+.doc-tipo-letter {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #1e293b;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 36px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.doc-number {
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+/* Info block: emisor + receptor */
+.doc-parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.doc-party h4 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  margin-bottom: 0.4rem;
+}
+
+.doc-party p {
+  font-size: 0.9rem;
+  color: #334155;
+  margin: 0.1rem 0;
+}
+
+.doc-party strong {
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+/* Tabla de ítems */
+.doc-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.doc-items-table thead tr {
+  background-color: #f1f5f9;
+}
+
+.doc-items-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.doc-items-table th:last-child,
+.doc-items-table td:last-child {
+  text-align: right;
+}
+
+.doc-items-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.doc-items-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Totales */
+.doc-totals {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.doc-totals-box {
+  min-width: 280px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.doc-total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.doc-total-row:last-child {
+  border-bottom: none;
+  background: #0ca354;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Footer */
+.doc-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.doc-firma {
+  border-top: 1px solid #334155;
+  padding-top: 0.5rem;
+  min-width: 200px;
+  text-align: center;
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+.doc-status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+
+.doc-status-acopio { background: #fef3c7; color: #d97706; }
+.doc-status-emitida { background: #dbeafe; color: #2563eb; }
+.doc-status-pagada { background: #dcfce7; color: #16a34a; }

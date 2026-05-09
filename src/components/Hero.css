@@ -1,0 +1,83 @@
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-image: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 4rem 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(12, 163, 84, 0.2);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-lg {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-white:hover {
+  background-color: white;
+  color: var(--bg-dark);
+}
