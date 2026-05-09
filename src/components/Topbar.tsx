@@ -1,5 +1,5 @@
-import React from 'react';
-import { ShoppingCart, UserCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingCart, UserCircle, Menu, X } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import './Topbar.css';
 
@@ -13,31 +13,43 @@ interface TopbarProps {
 
 const Topbar: React.FC<TopbarProps> = ({ activeTab, setActiveTab, cartItemCount, onCartClick, onAuthClick }) => {
   const { clienteSession } = useAppContext();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const baseLinks = ['Inicio', 'Productos', 'Medidas', 'Nosotros', 'Contacto'];
   const links = clienteSession ? [...baseLinks, 'Mi Cuenta'] : baseLinks;
 
   const handleAuthClick = () => {
     if (clienteSession) {
       setActiveTab('Mi Cuenta');
+      setMobileMenuOpen(false);
     } else {
       onAuthClick();
+      setMobileMenuOpen(false);
     }
+  };
+
+  const handleNavClick = (link: string) => {
+    setActiveTab(link);
+    setMobileMenuOpen(false);
   };
 
   return (
     <header className="topbar">
       <div className="container topbar-container">
-        <div className="logo" onClick={() => setActiveTab('Inicio')} style={{cursor: 'pointer'}}>
+        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        <div className="logo" onClick={() => handleNavClick('Inicio')} style={{cursor: 'pointer'}}>
           <span className="logo-symbol">α</span>
           <span className="logo-text">ALFAMETAL</span>
         </div>
         
-        <nav className="desktop-nav">
+        <nav className={`desktop-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           {links.map((link) => (
             <button 
               key={link} 
               className={`nav-link ${activeTab === link ? 'active' : ''}`}
-              onClick={() => setActiveTab(link)}
+              onClick={() => handleNavClick(link)}
             >
               {link}
             </button>
@@ -56,6 +68,7 @@ const Topbar: React.FC<TopbarProps> = ({ activeTab, setActiveTab, cartItemCount,
           </div>
         </div>
       </div>
+      {mobileMenuOpen && <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}></div>}
     </header>
   );
 };

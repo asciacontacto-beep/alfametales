@@ -274,7 +274,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       auth_user_id: authData.user.id,
     }]).select().single();
 
-    if (clienteError) return { error: 'Cuenta creada, pero hubo un error al guardar tus datos. Contactanos.' };
+    if (clienteError) {
+      console.error('Error al insertar cliente:', clienteError);
+      return { error: 'Cuenta creada, pero hubo un error al guardar tus datos. Contactanos.' };
+    }
 
     setClienteSession({ authUser: authData.user, cliente: clienteData as Cliente });
     refreshData();

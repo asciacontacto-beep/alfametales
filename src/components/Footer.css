@@ -51,3 +51,16 @@
   color: #475569;
   font-size: 0.85rem;
 }
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 2rem;
+  }
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .footer-content > div {
+    width: 100%;
+  }
+}
