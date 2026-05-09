@@ -187,14 +187,29 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
         // Buscar el registro de cliente vinculado a este usuario
-        const { data: clienteData } = await supabase
+        let { data: clienteData } = await supabase
           .from('clientes')
           .select('*')
           .eq('auth_user_id', session.user.id)
           .single();
 
+        if (!clienteData && session.user.email) {
+          // Recuperación: si el usuario existe en Auth pero no en clientes (falló a la mitad)
+          const { data: newCliente } = await supabase.from('clientes').insert([{
+            nombre: session.user.email.split('@')[0],
+            email: session.user.email,
+            direccion: '',
+            cuit: '',
+            tipo: 'minorista',
+            auth_user_id: session.user.id,
+          }]).select().single();
+          clienteData = newCliente;
+        }
+
         if (clienteData) {
           setClienteSession({ authUser: session.user, cliente: clienteData as Cliente });
+        } else {
+          supabase.auth.signOut(); // Forzar cierre si no se puede recuperar
         }
       } else {
         setClienteSession(null);

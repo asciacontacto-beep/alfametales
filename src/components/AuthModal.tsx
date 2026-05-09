@@ -6,11 +6,12 @@ import './AuthModal.css';
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onLoginSuccess?: () => void;
 }
 
 type AuthView = 'login' | 'register' | 'dashboard';
 
-const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
+const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSuccess }) => {
   const { clienteSession, loginCliente, registerCliente, logoutCliente } = useAppContext();
   const [view, setView] = useState<AuthView>('login');
   const [nombre, setNombre] = useState('');
@@ -34,6 +35,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const { error: err } = await loginCliente(email, password);
     setLoading(false);
     if (err) { setError(err); return; }
+    if (onLoginSuccess) onLoginSuccess();
     onClose();
   };
 

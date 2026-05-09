@@ -94,17 +94,22 @@ function App() {
       
       <WhatsAppButton />
       
-      <CartModal 
-        isOpen={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
-        cart={cart}
-        setCart={setCart}
-      />
-      
-      <AuthModal 
-        isOpen={isAuthOpen}
-        onClose={() => setIsAuthOpen(false)}
-      />
+      {isCartOpen && (
+        <CartModal 
+          isOpen={isCartOpen} 
+          onClose={() => setIsCartOpen(false)} 
+          cart={cart}
+          setCart={setCart}
+        />
+      )}
+
+      {isAuthOpen && (
+        <AuthModal 
+          isOpen={isAuthOpen} 
+          onClose={() => setIsAuthOpen(false)} 
+          onLoginSuccess={() => setActiveTab('Mi Cuenta')}
+        />
+      )}
     </div>
   );
 }
