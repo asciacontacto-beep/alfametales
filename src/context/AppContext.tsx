@@ -187,15 +187,19 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
         // Buscar el registro de cliente vinculado a este usuario
-        let { data: clienteData } = await supabase
+        let { data: clienteData, error: fetchError } = await supabase
           .from('clientes')
           .select('*')
           .eq('auth_user_id', session.user.id)
           .single();
 
+        if (fetchError && fetchError.code !== 'PGRST116') {
+          console.error("Error al buscar cliente:", fetchError);
+        }
+
         if (!clienteData && session.user.email) {
           // Recuperación: si el usuario existe en Auth pero no en clientes (falló a la mitad)
-          const { data: newCliente } = await supabase.from('clientes').insert([{
+          const { data: newCliente, error: insertError } = await supabase.from('clientes').insert([{
             nombre: session.user.email.split('@')[0],
             email: session.user.email,
             direccion: '',
@@ -203,12 +207,17 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
             tipo: 'minorista',
             auth_user_id: session.user.id,
           }]).select().single();
+          
+          if (insertError) {
+            console.error("Error al intentar auto-crear cliente:", insertError);
+          }
           clienteData = newCliente;
         }
 
         if (clienteData) {
           setClienteSession({ authUser: session.user, cliente: clienteData as Cliente });
         } else {
+          console.error("Forzando logout porque no se pudo obtener ni crear el cliente vinculado.");
           supabase.auth.signOut(); // Forzar cierre si no se puede recuperar
         }
       } else {
