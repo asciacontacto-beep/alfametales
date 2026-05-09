@@ -32,11 +32,17 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSuccess }
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(''); setLoading(true);
-    const { error: err } = await loginCliente(email, password);
-    setLoading(false);
-    if (err) { setError(err); return; }
-    if (onLoginSuccess) onLoginSuccess();
-    onClose();
+    try {
+      const { error: err } = await loginCliente(email, password);
+      if (err) { setError(err); return; }
+      if (onLoginSuccess) onLoginSuccess();
+      onClose();
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Error de conexión. Contactá a soporte.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -44,10 +50,16 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSuccess }
     if (!nombre.trim()) { setError('Ingresá tu nombre completo.'); return; }
     if (password.length < 6) { setError('La contraseña debe tener al menos 6 caracteres.'); return; }
     setError(''); setLoading(true);
-    const { error: err } = await registerCliente(nombre, email, password, telefono);
-    setLoading(false);
-    if (err) { setError(err); return; }
-    setSuccess('¡Cuenta creada! Revisá tu email para confirmarla.');
+    try {
+      const { error: err } = await registerCliente(nombre, email, password, telefono);
+      if (err) { setError(err); return; }
+      setSuccess('¡Cuenta creada! Revisá tu email para confirmarla.');
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Error de conexión. Contactá a soporte.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogout = async () => {
