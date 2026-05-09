@@ -10,12 +10,13 @@ const Historia: React.FC = () => {
           <span className="badge">NUESTRA HISTORIA</span>
           <h2 className="historia-title">Compromiso con la Construcción en Necochea</h2>
           <p className="historia-text">
-            En <strong>Alfametal</strong>, nos especializamos en la provisión de materiales siderúrgicos 
-            para obras de toda escala. Con años de trayectoria en el mercado local, 
-            entendemos las necesidades de contratistas y empresas constructoras.
+            En <strong>Alfametal</strong> acompañamos hace mas de 20 años el crecimiento de nuestra ciudad y la región, ofreciendo materiales siderúrgicos y productos para la construcción con el compromiso y la confianza que nos caracterizan.
+          </p>
+          <p className="historia-text" style={{ marginTop: '1rem' }}>
+            A lo largo de nuestra trayectoria, trabajamos junto a empresas, profesionales y particulares, entendiendo que detrás de cada obra existe un proyecto, un esfuerzo y una necesidad diferente. Por eso, buscamos brindar mucho más que materiales: ofrecemos atención personalizada, asesoramiento responsable y soluciones adaptadas a cada cliente.
           </p>
           
-          <div className="historia-features">
+          <div className="historia-features" style={{ marginTop: '1.5rem' }}>
             <div className="feature-item">
               <Truck className="feature-icon" size={20} />
               <span className="feature-text"><strong>Logística propia en zona</strong></span>
@@ -29,7 +30,7 @@ const Historia: React.FC = () => {
 
         <div className="historia-stats animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <div className="stat-card">
-            <h3 className="stat-number">+15</h3>
+            <h3 className="stat-number">+20</h3>
             <p className="stat-label">Años de experiencia</p>
           </div>
           <div className="stat-card">
